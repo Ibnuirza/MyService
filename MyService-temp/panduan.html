@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyService - Solusi Kerusakan Smartphone Anda</title>
+    <link rel = "stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>MyService</h1>
+        <p>Solusi Terpercaya untuk Perbaikan Smartphone Anda</p>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>        
+    </header>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-picture"></div>
+            <p id="userName">namehere</p>
+            <small id="userEmail">emailhere</small>
+        </div>
+        <ul class="sidebar-menu">
+            <li><button onclick="navigateToProfile()">My Profile</button></li>
+            <li><button>History</button></li>
+            <li><button>Contact Us</button></li>
+        </ul>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="layanan.html">Layanan</a></li>
+            <li><a href="panduan.html" class = "active">Panduan</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="panduan" class="troubleshooting">
+            <h2>Langkah Untuk Self Service</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Smartphone Sering Restart</h3>
+                    <ul>
+                        <li>Periksa update sistem terbaru</li>
+                        <li>Hapus aplikasi yang mencurigakan</li>
+                        <li>Periksa kondisi baterai</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Baterai Cepat Habis</h3>
+                    <ul>
+                        <li>Matikan fitur yang tidak digunakan</li>
+                        <li>Periksa aplikasi yang berjalan di background</li>
+                        <li>Pertimbangkan penggantian baterai</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Layar Tidak Responsif</h3>
+                    <ul>
+                        <li>Restart smartphone</li>
+                        <li>Periksa kerusakan fisik</li>
+                        <li>Backup data penting</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Penyimpanan Penuh</h3>
+                    <ul>
+                        <li>Periksa kapasitas penyimpanan smartphone kamu</li>
+                        <li>Hapus aplikasi yang tidak dipakai</li>
+                        <li>Backup foto dan video penting ke dalam cloud atau laptop</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Pengisisan Daya Smartphone Lambat</h3>
+                    <ul>
+                        <li>Hentikan aplikasi-aplikasi yang berjalan saat sedang diisi daya</li>
+                        <li>Periksa pengisi daya smartphone, pastikan sesuai dengan standar pabrik</li>
+                        <li>Jika masih bermasalah, bawa ke service center</li>
+                    </ul>
+                </div>
+            </div>
+            <p><br><br><br></p>
+            <h2>Tips Merawat Handphone</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Gunakan Case Smartphone</h3>
+                    <ul>
+                        <li>Mengamankan smartphone pada kejadian yang tidak diinginkan seperti jatuh</li>
+                        <li>Mengurangi debu yang masuk pada smartphone</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Gunakan ScreenGuard pada Smartphone</h3>
+                    <ul>
+                        <li>Mengamankan layar smartphone dari goresan halus pada jari</li>
+                        <li>Mengurangi dampak kerusakan jika jatuh tidak langsung terkena LCD</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Isi Daya Smartphone Sebelum habis</h3>
+                    <ul>
+                        <li>Untuk menjaga kualitas baterai pada smartphone</li>
+                        <li>Untuk menjaga komponen di dalam smartphone</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Penyimpanan Penuh</h3>
+                    <ul>
+                        <li>Periksa kapasitas penyimpanan smartphone kamu</li>
+                        <li>Hapus aplikasi yang tidak dipakai</li>
+                        <li>Backup foto dan video penting ke dalam cloud atau laptop</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Pengisisan Daya Smartphone Lambat</h3>
+                    <ul>
+                        <li>Hentikan aplikasi-aplikasi yang berjalan saat sedang diisi daya</li>
+                        <li>Periksa pengisi daya smartphone, pastikan sesuai dengan standar pabrik</li>
+                        <li>Jika masih bermasalah, bawa ke service center</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    <footer>
+        <p>© 2024 MyService - Spesialis Perbaikan Smartphone</p>
+        <p>Alamat: Pesona Bali Residence, Bl. B12 No.17, Bojongsoang, Bandung Regency, West Java 40288</p>
+        <p>Telepon: 0812-2512-2418 | Email: ganesha.irza@gmail.com</p>
+    </footer>
+</body>
+<script>
+    const userId = localStorage.getItem('user_id');
+
+    if (userId) {   
+        fetch(`http://localhost:3000/getUserData/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.name && data.email) {
+                // Update the sidebar with the user's name and email
+                document.querySelector('#userName').textContent = data.name;
+                document.querySelector('#userEmail').textContent = data.email;
+            } else {
+                console.log('User data not available');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+    } else {
+        console.log('No user_id found');
+    }
+
+    function toggleMenu() {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+            sidebar.style.display = 'block'; // Show sidebar
+        } else {
+            sidebar.style.display = 'none'; // Hide sidebar
+        }
+    }
+
+    function navigateToProfile() {
+        window.location.href = 'profile.html';
+    }
+</script>
+</html>

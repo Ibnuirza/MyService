@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatAI - MyService</title>
+    <link rel="stylesheet" href="css/AIchat.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1 onclick="backToBeranda()">MyService</h1>
+        <p>Solusi Terpercaya untuk Perbaikan Smartphone Anda</p>
+    </header>
+    <header>
+        <h1>ChatAI</h1>
+    </header>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Tanyakan sesuatu..." />
+            <button type="submit" onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 MyService - Spesialis Perbaikan Smartphone</p>
+        <p>Alamat: Pesona Bali Residence, Bl. B12 No.17, Bojongsoang, Bandung Regency, West Java 40288</p>
+        <p>Telepon: 0812-2512-2418 | Email: ganesha.irza@gmail.com</p>
+    </footer>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (userInput.trim() === "") return;
+
+            // Add user's message to chat box
+            const chatBox = document.getElementById("chat-box");
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("message", "user");
+            userMessage.innerHTML = `
+                <div class="sender">Anda:</div>
+                <div class="text">${userInput}</div>
+            `;
+            chatBox.appendChild(userMessage);
+
+            // Simulate AI response
+            const aiMessage = document.createElement("div");
+            aiMessage.classList.add("message");
+            aiMessage.innerHTML = `
+                <div class="sender">ChatAI:</div>
+                <div class="text">Terima kasih sudah menghubungi kami. Apa yang bisa saya bantu?</div>
+            `;
+            chatBox.appendChild(aiMessage);
+
+            // Scroll to the bottom of the chat box
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Clear the input field
+            document.getElementById("user-input").value = "";
+        }
+
+        function backToBeranda(){
+            window.location.href = 'beranda.html';
+        }
+
+    </script>
+
+</body>
+</html>

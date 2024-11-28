@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyService Login</title>
+    <link rel="stylesheet" href="css/style-login.css">
+</head>
+<body>
+    <div class="background-circle"></div>
+    <div class="login-card">
+        <div class="left-side">
+            <div class="logo-section">
+                <h1>MyService</h1>
+                <p>Solusi Terpercaya untuk Perbaikan Smartphone Anda</p>
+            </div>
+            <div class="footer">
+                <p>© 2024 MyService - Spesialis Perbaikan Smartphone</p>
+                <p>Alamat: Pesona Bali Residence, Bl. B12 No.17, Bojongsoang, Bandung Regency, West Java 40288</p>
+                <p>Telepon: 0812-2512-2418 | Email: ganesha.irza@gmail.com</p>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="quarter-circle"></div>
+            <div class="login-form">
+                <h2>Selamat Datang!</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="email" name="email" placeholder="Masukkan Email Anda...." required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder="Masukkan Password Anda...." required>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Lupa Password?</a>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Masuk</button>
+                        <button type="button" id="daftarButton" class="btn btn-secondary">Daftar</button>
+                    </div>
+                    <div id="error-message" style="color: red; display: none; margin-top: 10px;"></div>
+                </form>                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle the form submission using JavaScript
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from reloading the page
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Send a POST request to the backend server
+            fetch('http://localhost:3000/login', { // Make sure to point to the correct URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    // Display alert if login failed
+                    alert(data.message);  // Display error message if login fails
+                } else {
+                    // Store the user ID in localStorage
+                    localStorage.setItem('user_id', data.user_id);
+
+                    // If login is successful, redirect to 'beranda.html'
+                    window.location.href = 'beranda.html';  // Ensure the URL is correct and accessible
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // Redirect to the signup page when the "Daftar" button is clicked
+        document.getElementById('daftarButton').addEventListener('click', function() {
+            window.location.href = 'signup.html';  // Ensure the URL is correct
+        });
+
+    </script>
+    
+</body>
+</html>

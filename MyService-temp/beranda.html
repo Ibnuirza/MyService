@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - MyService</title>
+    <link rel="stylesheet" href="css/beranda.css">
+</head>
+<body>
+    <header>
+        <h1>MyService</h1>
+        <p>Solusi Terpercaya untuk Perbaikan Smartphone Anda</p>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>        
+    </header>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-picture"></div>
+            <p id="userName">namehere</p>
+            <small id="userEmail">emailhere</small>
+        </div>
+        <ul class="sidebar-menu">
+            <li><button onclick="navigateToProfile()">My Profile</button></li>
+            <li><button>History</button></li>
+            <li><button>Contact Us</button></li>
+        </ul>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="beranda.html" class="active">Beranda</a></li>
+            <li><a href="layanan.html">Layanan</a></li>
+            <li><a href="panduan.html#panduan">Panduan</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section">
+        <h2>Perbaikan Smartphone Mudah dan Terpercaya</h2>
+        <p>Konsultasikan masalah smartphone Anda dengan teknisi profesional kami</p>
+        <a href="#konsultasi" class="cta-button" onclick="navigateToAIchat()">Konsultasi Gratis</a>
+    </div>
+
+    <div class="container">
+        <!-- Bagian Cara Kerja -->
+        <section class="how-it-works">
+            <h2>Cara Kerja MyService</h2>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Konsultasi Online</h3>
+                    <p>Ceritakan masalah smartphone Anda melalui form konsultasi online</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Diagnosa Gratis</h3>
+                    <p>Teknisi kami akan menganalisis masalah dan memberikan solusi terbaik</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Perbaikan</h3>
+                    <p>Pilih jadwal servis yang sesuai dan kami akan memperbaiki smartphone Anda</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Keunggulan -->
+        <section class="features">
+            <h2>Mengapa Memilih MyService?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Konsultasi Online</h3>
+                    <p>Diagnosis awal gratis melalui website tanpa perlu datang ke tempat</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Teknisi Berpengalaman</h3>
+                    <p>Tim teknisi profesional dengan sertifikasi resmi</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Garansi Servis</h3>
+                    <p>Garansi hingga 3 bulan untuk setiap perbaikan</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Harga Transparan</h3>
+                    <p>Estimasi biaya diberikan sebelum perbaikan dimulai</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimoni -->
+        <section class="testimonials">
+            <h2>Apa Kata Mereka?</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Pelayanan sangat cepat dan profesional. HP saya kembali seperti baru!"</p>
+                    <h4>Ahmad S.</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Konsultasi online sangat membantu. Teknisi sangat informatif."</p>
+                    <h4>Sarah R.</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Harga terjangkau dengan kualitas servis yang memuaskan."</p>
+                    <h4>Budi W.</h4>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 MyService - Spesialis Perbaikan Smartphone</p>
+        <p>Alamat: Pesona Bali Residence, Bl. B12 No.17, Bojongsoang, Bandung Regency, West Java 40288</p>
+        <p>Telepon: 0812-2512-2418 | Email: ganesha.irza@gmail.com</p>
+    </footer>
+
+    <script>
+        const userId = localStorage.getItem('user_id');
+
+        if (userId) {
+            fetch(`http://localhost:3000/getUserData/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.name && data.email) {
+                        // Update the sidebar with the user's name and email
+                        document.querySelector('#userName').textContent = data.name;
+                        document.querySelector('#userEmail').textContent = data.email;
+                    } else {
+                        console.log('User data not available');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        } else {
+            console.log('No user_id found');
+        }
+
+        function toggleMenu() { // Untuk menampilkan sidebar dari kelas hamburger menu
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');  // Use a class toggle for better visibility handling
+        }
+
+        function navigateToProfile() { // Menuju halaman Profil pengguna yang login
+            window.location.href = 'profile.html';  
+        }
+
+        function navigateToAIchat() { // Menuju halaman chat AI
+            window.location.href = 'AIchat.html';
+        }
+    </script>
+</body>
+</html>

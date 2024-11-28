@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden; 
+}
+
+.login-card {
+    width: 1500px;
+    height: 600px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.left-side {
+    width: 50%;
+    padding: 60px;
+    background: linear-gradient(to right, #194A69, #214963);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Pastikan sisi kiri berada di bawah */
+    border-top-left-radius: 30px; /* Sudut melengkung untuk sisi kiri atas */
+    border-bottom-left-radius: 30px; /* Sudut melengkung untuk sisi kiri bawah */
+}
+
+.right-side {
+    width: 50%;
+    padding: 60px;
+    color: white;
+    background: linear-gradient(to right, #2981BA, #2981BA); /* Warna gradasi biru */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Pastikan posisinya relatif */
+    overflow: hidden;
+    box-shadow: -10px 0 20px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+    z-index: 2; /* Pastikan sisi kanan berada di atas */
+    border-top-right-radius: 30px; /* Sudut melengkung untuk sisi kanan atas */
+    border-bottom-right-radius: 30px; /* Sudut melengkung untuk sisi kanan bawah */
+}
+
+
+
+.logo-section {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo-section h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.logo-section p {
+    font-size: 1em;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.login-form h2 {
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 25px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 30px;
+    font-size: 1em;
+    outline: none;
+    color: #333;
+}
+
+.input-group input::placeholder {
+    color: #999;
+}
+
+.forgot-password {
+    text-align: right;
+    margin: 15px 0 25px;
+}
+
+.forgot-password a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: white;
+    color: #15406B;
+    border: 2px solid #15406B;
+}
+
+.btn-primary:hover {
+    background: #15406B;  /* Saat hover, background menjadi biru */
+    color: white;  /* Tulisan menjadi putih */
+}
+
+.btn-secondary {
+    background: white;
+    color: #15406B;
+    border: 2px solid #15406B;
+}
+
+.btn-secondary:hover {
+    background: #15406B;  /* Saat hover, background menjadi biru */
+    color: white;  /* Tulisan menjadi putih */
+}
+
+.social-login {
+    text-align: center;
+}
+
+.social-login p {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.google-btn {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.google-btn img {
+    width: 25px;
+    height: 25px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 60px;
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.background-circle {
+    width: 600px; /* Diameter lingkaran */
+    height: 600px;
+    background: linear-gradient(to bottom right, #2C85BF, #153E59); /* Warna gradasi */
+    border-bottom-left-radius: 600px; /* Membuat lengkungan keluar di kanan atas */
+    position: absolute;
+    top: -50px; /* Posisikan lebih rendah */
+    right: -50px; /* Posisikan lebih ke dalam */
+    z-index: -1; /* Pastikan di belakang elemen lain */
+}
+
+
+

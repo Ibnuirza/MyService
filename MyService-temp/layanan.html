@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyService - Solusi Kerusakan Smartphone Anda</title>
+    <link rel = "stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>MyService</h1>
+        <p>Solusi Terpercaya untuk Perbaikan Smartphone Anda</p>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>        
+    </header>
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-picture"></div>
+            <p id="userName">namehere</p>
+            <small id="userEmail">emailhere</small>
+        </div>
+        <ul class="sidebar-menu">
+            <li><button onclick="navigateToProfile()">My Profile</button></li>
+            <li><button>History</button></li>
+            <li><button>Contact Us</button></li>
+        </ul>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="#layanan" class = "active">Layanan</a></li>
+            <li><a href="panduan.html">Panduan</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="layanan">
+            <h2>Layanan Kami</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Mencari Lokasi Service</h3>
+                    <p>Mencari Lokasi Service terdekat dari lokasi anda dengan pelayanan terbaik.</p>
+                </div>
+                <div class="service-card" onclick="navigateToHistory()">
+                    <h3>Histori Kerusakan Smartphonemu</h3>
+                    <p>Histori Kerusakan yang dilaporkan akan tercatat disini.</p>
+                </div>
+                <div class="service-card" onclick="navigateToAIChat()">
+                    <h3>Tuliskan Kerusakan Smartphone Kamu Disini!</h3>
+                </div>
+            </div>
+        </section>
+
+    <footer>
+        <p>© 2024 MyService - Spesialis Perbaikan Smartphone</p>
+        <p>Alamat: Pesona Bali Residence, Bl. B12 No.17, Bojongsoang, Bandung Regency, West Java 40288</p>
+        <p>Telepon: 0812-2512-2418 | Email: ganesha.irza@gmail.com</p>
+    </footer>
+</body>
+<script>
+    const userId = localStorage.getItem('user_id');
+
+    if (userId) {
+    fetch(`http://localhost:3000/getUserData/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.name && data.email) {
+                // Update the sidebar with the user's name and email
+                document.querySelector('#userName').textContent = data.name;
+                document.querySelector('#userEmail').textContent = data.email;
+            } else {
+                console.log('User data not available');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+        });
+    } else {
+        console.log('No user_id found');
+    }
+
+    function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+        sidebar.style.display = 'block'; // Show sidebar
+    } else {
+        sidebar.style.display = 'none'; // Hide sidebar
+    }
+    }
+    function navigateToHistory() {
+        // Redirect to the 'Historykerusakan.html' page
+        window.location.href = 'HistoriKerusakan.html';
+    }
+    function navigateToAIChat() {
+        window.location.href = 'AIchat.html';
+    }
+    function navigateToProfile(){
+        window.location.href= 'profile.html';
+    }
+</script>
+</html>
